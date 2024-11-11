@@ -5,6 +5,8 @@ import java.awt.print.Paper;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
+// https://blog.csdn.net/qq_52010446/article/details/131465685
+
 fun main(args: Array<String>) {
     //Create a PrinterJob object which is initially associated with the default printer
 
