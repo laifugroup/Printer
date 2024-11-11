@@ -26,13 +26,15 @@ version = '1.0-SNAPSHOT'
 repositories {
     maven { url 'https://maven.aliyun.com/repository/public' }
     mavenCentral()
+    maven { url 'https://repo.e-iceblue.com/nexus/content/groups/public' }
 }
 
 
-
-
 dependencies {
-    implementation("com.itextpdf:itextpdf:5.5.13")
+    implementation('com.itextpdf:itextpdf:5.5.13.3')
+
+    implementation("e-iceblue:spire.pdf:9.6.2")
+
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 }

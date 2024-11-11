@@ -1,5 +1,3 @@
-package org.example
-
 import java.awt.print.PrinterJob
 import java.io.FileInputStream
 import javax.print.Doc
@@ -16,7 +14,7 @@ import javax.print.event.PrintJobListener
 
 fun main() {
     println("Hello World! 222")
-    print()
+    print0()
     println("Hello World! 111")
 }
 
@@ -25,7 +23,7 @@ fun main() {
 
 // https://blog.idrsolutions.com/how-to-print-pdf-files-from-java/
 
-fun print(){
+fun print0(){
     //  var printerJob: PrinterJob = PrinterJob.getPrinterJob()
     val printServices: Array<PrintService> = PrinterJob.lookupPrintServices()
     val fis = FileInputStream("C:\\Users\\leyuan\\Desktop\\222.pdf")
