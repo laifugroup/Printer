@@ -31,9 +31,13 @@ repositories {
 
 
 dependencies {
-    implementation('com.itextpdf:itextpdf:5.5.13.3')
+    implementation('com.itextpdf:itextpdf:5.5.13.4')
+    implementation 'com.itextpdf:font-asian:8.0.5'
 
-    implementation("e-iceblue:spire.pdf:9.6.2")
+
+    implementation 'org.apache.pdfbox:pdfbox:3.0.3'
+
+    //implementation("e-iceblue:spire.pdf:9.6.2")
 
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
