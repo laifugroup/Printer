@@ -1,7 +1,16 @@
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
+
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,11 +32,11 @@ public class HelloWorld {
             //页面大小
             Rectangle rect = new Rectangle(PageSize.A4);
             //页面背景色
-            rect.setBackgroundColor(BaseColor.ORANGE);
+            rect.setBackgroundColor(BaseColor.WHITE);
             Document document = new Document(rect);
             //Step 2—Get a PdfWriter instance.
             PdfWriter    writer= PdfWriter.getInstance(document, new FileOutputStream(FILE_DIR + "createSamplePDF.pdf"));
-            // 设置密码为："World"
+            // 设置密 码为："World"
 //            writer.setEncryption("Hello".getBytes(), "World".getBytes(),
 //                    PdfWriter.ALLOW_SCREENREADERS,
 //                    PdfWriter.STANDARD_ENCRYPTION_128);
@@ -41,14 +50,49 @@ public class HelloWorld {
             document.addCreator("Creator@iText");
 
 
+            //BaseFont bfChinese = BaseFont.createFont("STSongStd-Ligth","UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+             BaseFont bfChinese = BaseFont.createFont("c://windows//fonts//msyh.ttc,0", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             //页边空白
-            document.setMargins(10, 20, 30, 40);
+            document.setMargins(8, 8, 8, 8);
 
             //Step 3—Open the Document.  
             document.open();
-            //Step 4—Add content.  
-            document.add(new Paragraph("你好,First page"));
+            //Step 4—Add content.
+            //public Font(     com. itextpdf. text. pdf. BaseFont bf,
+            //    float size,
+            //    int style )
+
+            Font font=new Font(bfChinese,48.0f);
+            font.setColor(BaseColor.RED);
+            font.setStyle(Font.FontStyle.NORMAL.getValue());
+            Paragraph title=new Paragraph("乐园老年社交平台",font);
+                title.setAlignment(Element.ALIGN_CENTER);
+                title.setSpacingAfter(15f);
+                title.setSpacingBefore(15f);
+            document.add(title);
+
+
+            //直线
+            Paragraph p1 = new Paragraph();
+            p1.add(new Chunk(new LineSeparator(font)));
+            //p1.add("R");
+            document.add(p1);
+
+            //Image对象
+            document.newPage();
+            ClassLoader.class.getResource("111.PNG");
+            String path = Objects.requireNonNull(HelloWorld.class.getClassLoader().getResource("111.PNG")).getPath();
+
+            Image img = Image.getInstance(path);
+            img.setAlignment(Image.LEFT | Image.TEXTWRAP);
+            img.setBorder(Image.BOX);
+            img.setBorderWidth(10);
+            img.setBorderColor(BaseColor.WHITE);
+            img.scaleToFit(200, 200);//大小
+            //img.setRotationDegrees(-30);//旋转
+            document.add(img);
+
            // document.add(new Paragraph(Document.));
             document.newPage();
             writer.setPageEmpty(false);
@@ -57,12 +101,15 @@ public class HelloWorld {
             document.add(new Paragraph("New page"));
 
 
+
             //Step 5—Close the Document.  
             document.close();
         } catch (DocumentException ex) {
             Logger.getLogger(HelloWorld.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(HelloWorld.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
