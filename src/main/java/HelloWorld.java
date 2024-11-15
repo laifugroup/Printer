@@ -180,7 +180,7 @@ public class HelloWorld {
             font2.setStyle(Font.FontStyle.NORMAL.getValue());
             Paragraph p2 =new Paragraph("纸上谈兵项目组\n2024年11月01日",font2);
             p2.setAlignment(Paragraph.ALIGN_RIGHT);
-
+//https://kb.itextpdf.com/itext/itext-7-jump-start-tutorial-chapter-3
             Paragraph p222 = new Paragraph()
                     .setFont(timesNewRoman)
                     .setFontSize(7)
