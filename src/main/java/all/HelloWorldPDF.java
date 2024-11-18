@@ -1,3 +1,4 @@
+package all;
 
 import java.awt.Color;
 import java.awt.geom.Point2D;
