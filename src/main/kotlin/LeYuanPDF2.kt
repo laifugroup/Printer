@@ -58,7 +58,7 @@ fun main() {
         this.color= ColorConstants.RED
     }))
 
-    val station =  Paragraph("中大站")
+    val station =  Paragraph("小工具副业开发站")
         .setFont(font)
         .setFontSize(32f)
         .setFontColor(ColorConstants.RED)
@@ -67,7 +67,7 @@ fun main() {
     document.add(station)
 
     //.setFontColor(ColorConstants.RED)
-    val content1 =  Paragraph("亲爱的张三：")
+    val content1 =  Paragraph("亮  swift UI学习1%：")
         .setFont(font)
         .setFontSize(16f)
        // .setBold()
