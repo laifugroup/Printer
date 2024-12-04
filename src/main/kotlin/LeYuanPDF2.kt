@@ -1,28 +1,17 @@
 import com.itextpdf.io.image.ImageDataFactory
-import com.itextpdf.kernel.colors.Color
 import com.itextpdf.kernel.colors.ColorConstants
 import com.itextpdf.kernel.colors.DeviceRgb
 import com.itextpdf.kernel.font.PdfFontFactory
 import com.itextpdf.kernel.geom.PageSize.A4
-import com.itextpdf.kernel.pdf.EncryptionConstants
-import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfWriter
-import com.itextpdf.kernel.pdf.WriterProperties
-import com.itextpdf.kernel.pdf.canvas.PdfCanvas
+import com.itextpdf.kernel.pdf.*
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine
 import com.itextpdf.layout.Document
-import com.itextpdf.layout.borders.SolidBorder
-import com.itextpdf.layout.element.BlockElement
-import com.itextpdf.layout.element.Div
 import com.itextpdf.layout.element.Image
 import com.itextpdf.layout.element.LineSeparator
 import com.itextpdf.layout.element.Paragraph
 import com.itextpdf.layout.element.Text
-import com.itextpdf.layout.properties.HorizontalAlignment
 import com.itextpdf.layout.properties.TextAlignment
-import com.itextpdf.layout.properties.UnitValue
 import com.itextpdf.layout.properties.VerticalAlignment
-import org.apache.pdfbox.pdmodel.PDPageContentStream
 import java.nio.charset.Charset
 
 fun main() {
@@ -33,6 +22,13 @@ fun main() {
 
     val pdfDocument =  PdfDocument(writer) //PDDocument
     val pdfPage=  pdfDocument.addNewPage(A4)
+    // 获取文档信息对象
+    val docInfo: PdfDocumentInfo = pdfDocument.getDocumentInfo()
+    // 设置元数据信息
+    docInfo.setCreator("纸上谈兵")
+            .setAuthor("纸上谈兵项目组")
+            .setSubject("纸上谈兵是一款现实战略游戏")
+            .setTitle("纸上谈兵挑战赛")
     val document =  Document(pdfDocument,A4)
 
     val text2 =  Text("Hello World！")
@@ -116,6 +112,7 @@ fun main() {
     val sign = Image(ImageDataFactory.create("C:\\Users\\leyuan\\IdeaProjects\\Printer\\src\\main\\resources\\zstbxmz.png"))
         .setWidth(width)
         .setHeight(width)
+        //.setRotationAngle(45.00)
         .setOpacity(0.8f)
         .setFixedPosition(
             pdfDocument.defaultPageSize.width-marginRight-width, // x坐标：div的左边界 + (200-128)/2
