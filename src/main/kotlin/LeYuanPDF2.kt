@@ -74,7 +74,7 @@ fun main() {
         .setWordSpacing(1.2f)
         .setMarginTop(16f)
 
-    val content2 =  Paragraph("恭喜您在2024年度“纸上谈兵”第20241204001次挑战赛中获得胜利！")
+    val content2 =  Paragraph("恭喜您在2024年度“纸上谈兵”第241204001次挑战赛中获得胜利！")
         .setFont(font)
         .setFontSize(14f)
         .setFirstLineIndent(14f*2)
