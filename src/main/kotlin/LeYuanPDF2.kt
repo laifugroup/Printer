@@ -58,7 +58,7 @@ fun main() {
         this.color= ColorConstants.RED
     }))
 
-    val station =  Paragraph("小工具副业开发站")
+    val station =  Paragraph("小工具副业开发")
         .setFont(font)
         .setFontSize(32f)
         .setFontColor(ColorConstants.RED)
