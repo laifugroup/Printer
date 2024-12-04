@@ -12,6 +12,7 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvas
 import com.itextpdf.kernel.pdf.canvas.draw.SolidLine
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.borders.SolidBorder
+import com.itextpdf.layout.element.BlockElement
 import com.itextpdf.layout.element.Div
 import com.itextpdf.layout.element.Image
 import com.itextpdf.layout.element.LineSeparator
@@ -38,12 +39,12 @@ fun main() {
         .setItalic()    // 倾斜
         .setBackgroundColor( DeviceRgb(255, 0, 0));
     // 添加一段中文（itext无法支持中文字体，需要设置字体）
-    //val font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H")
-    val font= PdfFontFactory.createFont("c://windows//fonts//msyh.ttc,0")
+    val font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H")
+    //val font= PdfFontFactory.createFont("c://windows//fonts//msyh.ttc,0")
     //val bfChinese = BaseFont.createFont("c://windows//fonts//msyh.ttc,0", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
     // 设置文本的字体、大小、颜色、背景颜色、对齐方式、垂直对其方式
-    val title =  Paragraph("乐园老年社交平台")
+    val title =  Paragraph("纸上谈兵挑战赛")
         .setFont(font)
         .setFontSize(48f)
         .setFontColor(ColorConstants.RED)
@@ -66,20 +67,20 @@ fun main() {
     document.add(station)
 
     //.setFontColor(ColorConstants.RED)
-    val content1 =  Paragraph("亲爱的乐园友友：")
+    val content1 =  Paragraph("亲爱的张三：")
         .setFont(font)
         .setFontSize(16f)
-        .setBold()
+       // .setBold()
         .setWordSpacing(1.2f)
         .setMarginTop(16f)
 
-    val content2 =  Paragraph("恭喜您在2024年乐园节好声音海选比赛中成功晋级！")
+    val content2 =  Paragraph("恭喜您在2024年度“纸上谈兵”第20241204001次挑战赛中获得胜利！")
         .setFont(font)
         .setFontSize(14f)
         .setFirstLineIndent(14f*2)
 
 
-    val content3 =  Paragraph("乐园好声音的舞台因您而更加闪耀，期待您在后续的比赛中精彩表现，取得好成绩！")
+    val content3 =  Paragraph("“纸上谈兵”因您而更加闪耀，期待您在后续的比赛中精彩表现，取得好成绩！")
         .setFont(font)
         .setFontSize(14f)
         .setFirstLineIndent(14f*2)
@@ -90,45 +91,39 @@ fun main() {
     document.add(content2)
     document.add(content3)
 
-    val dvFu =  Div().apply {
-        this.width = UnitValue.createPercentValue(100f)
-        this.height=UnitValue.createPointValue(200f)
-        this.setFixedPosition(1, pdfDocument.defaultPageSize.width-200f-20f, 32f, 200f)
-        this.setBackgroundColor(DeviceRgb(166, 255, 255))
-        this.setBorder(SolidBorder(2f))
-        this.setVerticalAlignment(VerticalAlignment.MIDDLE)
-        this.setHorizontalAlignment(HorizontalAlignment.CENTER)
-    }
+    val width=28.346f * 4.0f * 1.6f //40mm*1.2倍
+    val marginBottom= 36f
+    val marginRight= 36f
 
-    val paragraph1 =  Paragraph()
-    val text =  Text("乐元社交平台\n2024年11月21日")
-        .setItalic()    // 倾斜
+    val text =  Text("纸上谈兵项目组\n2024年12月04日")
+        //.setFixedPosition()
+        .setItalic()   // 倾斜
 
-    paragraph1.add("乐元社交平台\n2024年11月21日")
-    paragraph1
+    val platform = Paragraph()
+    platform.add(text)
+    platform
         .setFont(font)
         .setFontSize(18f)
-        //.setVerticalAlignment(VerticalAlignment.MIDDLE)      // 段落内的内容垂直居中
-    //    .setHorizontalAlignment(HorizontalAlignment.RIGHT) // 段落元素水平居中
-        //.setRelativePosition(0f,0f,0f,0f)
-    //paragraph1.setTextAlignment(TextAlignment.RIGHT)
-    paragraph1.setTextAlignment(TextAlignment.CENTER)
-    paragraph1.setVerticalAlignment(VerticalAlignment.MIDDLE)
-    paragraph1.setBackgroundColor(DeviceRgb(255, 245, 238))
+        .setTextAlignment(TextAlignment.CENTER) // 文本右对齐
+        //.setBackgroundColor(DeviceRgb(177, 245, 238))
+    // 计算文本的宽度
+    val textWidth = width //platform.width // 获取段落的宽度
+    // 设置平台的位置为页面的右下角
+    val padding=0f
+    platform.setFixedPosition(1, pdfDocument.defaultPageSize.width - textWidth-marginRight-padding, marginBottom+width/3, textWidth) // 根据需要调整位置
 
-    dvFu.add(paragraph1)
 
-    val image1 = Image(ImageDataFactory.create("C:\\Users\\leyuan\\IdeaProjects\\Printer\\src\\main\\resources\\webwxgetmsgimg.jpg"))
-        .setWidth(128f)
-        .setHeight(128f)
+    val sign = Image(ImageDataFactory.create("C:\\Users\\leyuan\\IdeaProjects\\Printer\\src\\main\\resources\\zstbxmz.png"))
+        .setWidth(width)
+        .setHeight(width)
         .setOpacity(0.8f)
         .setFixedPosition(
-            pdfDocument.defaultPageSize.width-200f+36f, // x坐标：div的左边界 + (200-128)/2
-            68f  // y坐标：32 + (200-128)/2，使图片在div中垂直居中
+            pdfDocument.defaultPageSize.width-marginRight-width, // x坐标：div的左边界 + (200-128)/2
+            marginBottom  // y坐标：32 + (200-128)/2，使图片在div中垂直居中
         )
-    dvFu.add(image1)
 
-    document.add(dvFu)
+    document.add(platform)
+    document.add(sign)
 
     pdfDocument.close()
 }
