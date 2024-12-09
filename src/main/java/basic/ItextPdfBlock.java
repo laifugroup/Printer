@@ -38,7 +38,7 @@ public class ItextPdfBlock {
         paragraph.add("\n");
         // 这里我单独设置了个Text传入进去
         Text text = new Text("This is a Not good-looking picture！")
-                .setItalic()    // 倾斜
+                //.setItalic()    // 倾斜
                 .setBackgroundColor(new DeviceRgb(255, 0, 0));
         paragraph.add(text);
         paragraph.add("\n");

@@ -34,7 +34,7 @@ import java.net.MalformedURLException;
  */
 public class ItextSampleCanvasAddImage {
 
-    public static void main(String[] args) throws FileNotFoundException, MalformedURLException {
+    public static void main(String[] args) throws IOException {
         // 创建并初始化一个PDF文档
         PdfDocument pdfDocument = new PdfDocument(new PdfWriter("./canvas/基本示例_添加图片.pdf"));
         // 创建两张新页面

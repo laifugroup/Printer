@@ -26,7 +26,7 @@ public class ItextPdfStyle2 {
         // new Text()的牛逼之处就是可以对里面的每个字符设置样式
         paragraph1.add(new Text("蚂蚁小").setFontSize(25).setCharacterSpacing(25 * 2));
         paragraph1.add(new Text("哥").setFontSize(25));
-        paragraph1.setBold()
+        paragraph1//.setBold() 
                 .setFontSize(25)
                 .setFont(PdfFontFactory.createFont("STSong-Light", "UniGB-UCS2-H"))
                 .setTextAlignment(TextAlignment.CENTER)

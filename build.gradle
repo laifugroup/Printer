@@ -36,9 +36,26 @@ dependencies {
    // implementation 'com.itextpdf:itext-asian:5.2.0'
 
    // <!-- 导入iText核心坐标，主要操作PDF的读写功能 -->
-    implementation 'com.itextpdf:itext-core:8.0.4'
+    //implementation 'com.itextpdf:itext-core:8.0.4'
+    implementation 'com.itextpdf:itext-core:9.0.0'
+
     //  <!-- 导入iText加密依赖适配器，提供对PDF的加密功能 -->
-    implementation 'com.itextpdf:bouncy-castle-adapter:8.0.4'
+    implementation 'com.itextpdf:bouncy-castle-adapter:9.0.0'
+    //bouncy-castle-fips-adapter
+
+//            <dependency>
+//            <groupId>org.bouncycastle</groupId>
+//      <artifactId>bcprov-jdk15on</artifactId>
+//    <version>1.49</version>
+//    </dependency>
+//            <dependency>
+//            <groupId>org.bouncycastle</groupId>
+//      <artifactId>bcpkix-jdk15on</artifactId>
+//    <version>1.49</version>
+//    </dependency>
+
+
+
     //<!-- 导入iText二维码和条形码生成功能坐标 -->
     implementation 'com.itextpdf:barcodes:8.0.4'
 // https://mvnrepository.com/artifact/com.itextpdf/layout

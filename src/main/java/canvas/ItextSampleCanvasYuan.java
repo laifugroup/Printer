@@ -11,6 +11,7 @@ import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Random;
 
@@ -23,7 +24,7 @@ import java.util.Random;
  *
  */
 public class ItextSampleCanvasYuan {
-    public static void main(String[] args) throws FileNotFoundException, MalformedURLException {
+    public static void main(String[] args) throws IOException {
         // 创建并初始化一个PDF文档
         PdfDocument pdfDocument = new PdfDocument(new PdfWriter("./canvas/基本示例_圆.pdf"));
         // 创建一个新页

@@ -26,7 +26,7 @@ public class ItextPdfEncryption {
          * 执行代码会创建一个 PDF文件A.pdf 的文件，这个pdf打开需要输入“123” 用户密码
          * 当需要编辑PDF内容时需要输入 “456” 所有者密码
          */
-        public static void encryptionATest() throws FileNotFoundException {
+        public static void encryptionATest() throws IOException {
             // 创建写文档的一些配置信息，并设置加密的信息
             WriterProperties wProps = new WriterProperties();
             wProps.setStandardEncryption(
@@ -46,7 +46,7 @@ public class ItextPdfEncryption {
          * 执行代码会创建一个 PDF文件B.pdf 的文件，打开无需密码
          * 当需要编辑PDF内容时需要输入 “456” 所有者密码
          */
-        public static void encryptionBTest() throws FileNotFoundException {
+        public static void encryptionBTest() throws IOException {
             // 创建写文档的一些配置信息，并设置加密的信息
             WriterProperties wProps = new WriterProperties();
             wProps.setStandardEncryption(

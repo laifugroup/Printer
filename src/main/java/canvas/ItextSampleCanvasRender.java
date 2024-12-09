@@ -95,7 +95,7 @@ public class ItextSampleCanvasRender {
                 // 设置pdfCanvas和当前高级画布的范围Rectangle
                 Canvas canvas = new Canvas(pdfCanvas, rect);
                 canvas.setFont(font)
-                        .setBold()
+                        //.setBold() 
                         .setFontColor(ColorConstants.RED)
                         .setFontSize(30);
                 // 为画布设置文字

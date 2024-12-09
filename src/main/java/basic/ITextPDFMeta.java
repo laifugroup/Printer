@@ -16,7 +16,7 @@ public class ITextPDFMeta {
         }
 
         // 设置PDF元数据
-        public static void create() throws FileNotFoundException {
+        public static void create() throws IOException {
             // 创建一个PDF文件并构建PDF文档
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter("./简单示例meta.pdf"));
             // 获取文档信息对象

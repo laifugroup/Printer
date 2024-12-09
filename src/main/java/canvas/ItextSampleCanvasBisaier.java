@@ -32,7 +32,7 @@ import java.net.MalformedURLException;
  */
 public class ItextSampleCanvasBisaier {
 
-    public static void main(String[] args) throws FileNotFoundException, MalformedURLException {
+    public static void main(String[] args) throws IOException {
         // 创建并初始化一个PDF文档
         PdfDocument pdfDocument = new PdfDocument(new PdfWriter("./canvas/基本示例_贝塞尔曲线.pdf"));
         // 创建一个新页

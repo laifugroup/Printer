@@ -37,7 +37,7 @@ public class ItextPdfSample2 {
                 .setWidth(400).setBorder(new SolidBorder(ColorConstants.GRAY, 1));
         // ============================== 构建表格表头 ==============================
         Div div = new Div().add(new Paragraph("季度考试成绩表"))
-                .setHeight(40).setBold().setFont(font).setFontSize(20)
+                .setHeight(40)//.setBold() .setFont(font).setFontSize(20)
                 .setBorder(new SolidBorder(ColorConstants.GRAY, 1))
                 .setBorderBottom(Border.NO_BORDER)
                 .setTextAlignment(TextAlignment.CENTER)
@@ -46,7 +46,7 @@ public class ItextPdfSample2 {
         // ============================== 构建表格标题 ==============================
         // 设置标题样式（语文、数学、英语）
         Style styleHeader = new Style()
-                .setBold().setWidth(50).setHeight(20).setFont(font)
+                //.setBold() .setWidth(50).setHeight(20).setFont(font)
                 .setTextAlignment(TextAlignment.CENTER)
                 .setHorizontalAlignment(HorizontalAlignment.CENTER)
                 .setBorderRadius(new BorderRadius(10))
@@ -123,7 +123,7 @@ public class ItextPdfSample2 {
                 // 在画布上写文字
                 Canvas canvas = new Canvas(pdfCanvas, rect);
                 // 基本文字样式
-                canvas.setFont(font).setFontSize(14).setBold().setFontColor(ColorConstants.GRAY)
+                canvas.setFont(font).setFontSize(14)//.setBold() .setFontColor(ColorConstants.GRAY)
                         // 写文字
                         .showTextAligned("科 目", rect.getRight() - 20,
                                 rect.getTop() - 5, TextAlignment.RIGHT,

@@ -33,7 +33,7 @@ public class ItextPdfFontChina {
                 PdfFontFactory.EmbeddingStrategy.PREFER_EMBEDDED, true);
         // 设置样式
         paragraph1
-                .setBold()
+                //.setBold() 
                 .setFontSize(30)
                 .setFont(font)
                 .setFontScript(Character.UnicodeScript.HAN)

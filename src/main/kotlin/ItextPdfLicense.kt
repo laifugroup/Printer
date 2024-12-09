@@ -69,7 +69,7 @@ fun pdfBoxGen(){
     val paragraph =  Paragraph()
 
     val text =  Text("Hello World！")
-        .setItalic()    // 倾斜
+       // //.setItalic()    // 倾斜
         .setBackgroundColor( DeviceRgb(255, 0, 0));
     paragraph.add(text)
     paragraph

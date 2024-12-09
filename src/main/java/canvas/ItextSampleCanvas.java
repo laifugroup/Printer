@@ -66,7 +66,7 @@ public class ItextSampleCanvas {
         // 添加一个文本到矩形中
         Paragraph paragraph = new Paragraph("Canvas is your favorite")
                 .setHeight(60)
-                .setBold()      // 加粗
+                ////.setBold()       // 加粗
                 .setFont(PdfFontFactory.createFont())   // 字体样式
                 .setFontSize(30)// 字体大小
                 .setBorderRadius(new BorderRadius(20))  // 边框圆角20pt

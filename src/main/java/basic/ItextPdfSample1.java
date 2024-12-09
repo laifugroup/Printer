@@ -41,7 +41,7 @@ public class ItextPdfSample1 {
                 .setBackgroundImage(build);
         // 设置标题
         Paragraph hd = new Paragraph("哈芙加里墩职业技术学院")
-                .setBold()
+                //.setBold() 
                 .setFontSize(18)
                 .setMarginRight(30)
                 .setTextAlignment(TextAlignment.RIGHT)
@@ -59,7 +59,7 @@ public class ItextPdfSample1 {
         // 设置基本信息
         // 学生证字段
         Paragraph p1 = new Paragraph("学  生  证")
-                .setBold()
+                //.setBold() 
                 .setFontSize(26)
                 .setPaddings(-5, 0, 0, 20)
                 .setStrokeWidth(3f)                  // 设置字体元素的轮廓大小
@@ -71,7 +71,7 @@ public class ItextPdfSample1 {
         table.addCell(cell1);
         // 学生证右边信息
         // ## 设置一些通用的Style样式
-        Style style = new Style().setBold()
+        Style style = new Style()//.setBold() 
                 .setPaddingLeft(20).setPaddingTop(-5)
                 .setFontColor(new DeviceRgb(51, 100, 255));
         // 姓名

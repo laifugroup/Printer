@@ -118,8 +118,8 @@ public class ItextPdfFont {
         Paragraph paragraph1 =
                 new Paragraph("Thank you for reading Ant Brother's blog!");
         // 设置第一段文字样式
-        paragraph1.setBold()       // 加粗文本
-                .setItalic()       // 设置文本斜体
+        paragraph1////.setBold()        // 加粗文本
+                //.setItalic()       // 设置文本斜体
                 .setFontSize(26)   // 设置文字大小 20pt
                 .setLineThrough()  // 设置文本删除线
                 .setTextAlignment(TextAlignment.CENTER) // 设置字体居中

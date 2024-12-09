@@ -32,7 +32,7 @@ fun main() {
     val document =  Document(pdfDocument,A4)
 
     val text2 =  Text("Hello World！")
-        .setItalic()    // 倾斜
+       // //.setItalic()    // 倾斜
         .setBackgroundColor( DeviceRgb(255, 0, 0));
     // 添加一段中文（itext无法支持中文字体，需要设置字体）
     val font = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H")
@@ -66,7 +66,7 @@ fun main() {
     val content1 =  Paragraph("亮  swift UI学习1%：")
         .setFont(font)
         .setFontSize(16f)
-       // .setBold()
+       // //.setBold() 
         .setWordSpacing(1.2f)
         .setMarginTop(16f)
 
@@ -93,7 +93,7 @@ fun main() {
 
     val text =  Text("纸上谈兵项目组\n2024年12月04日")
         //.setFixedPosition()
-        .setItalic()   // 倾斜
+        ////.setItalic()   // 倾斜
 
     val platform = Paragraph()
     platform.add(text)
