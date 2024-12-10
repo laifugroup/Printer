@@ -23,7 +23,7 @@ fun main() {
     val pdfDocument =  PdfDocument(writer) //PDDocument
     val pdfPage=  pdfDocument.addNewPage(A4)
     // 获取文档信息对象
-    val docInfo: PdfDocumentInfo = pdfDocument.getDocumentInfo()
+    val docInfo: PdfDocumentInfo = pdfDocument.documentInfo
     // 设置元数据信息
     docInfo.setCreator("纸上谈兵")
             .setAuthor("纸上谈兵项目组")
@@ -49,10 +49,24 @@ fun main() {
         .setVerticalAlignment(VerticalAlignment.MIDDLE)
     document.add(title)
 
+
+    val times =  Paragraph("纸上谈兵（2024）第100号")
+        .setFont(font)
+        .setFontSize(14f)
+        .setFontColor(ColorConstants.BLACK)
+        //.setBackgroundColor(DeviceRgb(187, 255, 255))
+        .setTextAlignment(TextAlignment.CENTER)
+        .setVerticalAlignment(VerticalAlignment.MIDDLE)
+    document.add(times)
+
+
     // 画直线（普通）
-    document.add( LineSeparator( SolidLine(3f).apply {
+    document.add( LineSeparator( SolidLine(1.2f).apply {
         this.color= ColorConstants.RED
-    }))
+    }).setMarginTop(2f))
+    document.add(LineSeparator( SolidLine(1.2f).apply {
+        this.color= ColorConstants.RED
+    }).setMarginTop(3f))
 
     val station =  Paragraph("小工具副业开发")
         .setFont(font)
