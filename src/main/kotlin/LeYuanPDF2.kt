@@ -25,7 +25,7 @@ fun main() {
     // 获取文档信息对象
     val docInfo: PdfDocumentInfo = pdfDocument.documentInfo
     // 设置元数据信息
-    docInfo.setCreator("纸上谈兵")
+    docInfo.setCreator("纸上谈兵委员会")
             .setAuthor("纸上谈兵项目组")
             .setSubject("纸上谈兵是一款现实战略游戏")
             .setTitle("纸上谈兵挑战赛")
@@ -40,7 +40,7 @@ fun main() {
     //val bfChinese = BaseFont.createFont("c://windows//fonts//msyh.ttc,0", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
     // 设置文本的字体、大小、颜色、背景颜色、对齐方式、垂直对其方式
-    val title =  Paragraph("纸上谈兵挑战赛")
+    val title =  Paragraph("纸上谈兵委员会")
         .setFont(font)
         .setFontSize(48f)
         .setFontColor(ColorConstants.RED)
@@ -50,7 +50,7 @@ fun main() {
     document.add(title)
 
 
-    val times =  Paragraph("纸上谈兵（2024）第100号")
+    val times =  Paragraph("纸上谈兵(2025)第001号")
         .setFont(font)
         .setFontSize(14f)
         .setFontColor(ColorConstants.BLACK)
@@ -68,7 +68,7 @@ fun main() {
         this.color= ColorConstants.RED
     }).setMarginTop(3f))
 
-    val station =  Paragraph("小工具副业开发")
+    val station =  Paragraph("关于纸上谈兵挑战赛的通知")
         .setFont(font)
         .setFontSize(32f)
         .setFontColor(ColorConstants.RED)
@@ -77,14 +77,14 @@ fun main() {
     document.add(station)
 
     //.setFontColor(ColorConstants.RED)
-    val content1 =  Paragraph("亮  swift UI学习1%：")
+    val content1 =  Paragraph("还是做todo的Gin. 5%：")
         .setFont(font)
         .setFontSize(16f)
        // //.setBold() 
         .setWordSpacing(1.2f)
         .setMarginTop(16f)
 
-    val content2 =  Paragraph("恭喜您在2024年度“纸上谈兵”第241204001次挑战赛中获得胜利！")
+    val content2 =  Paragraph("恭喜您在2025年度“纸上谈兵”(2025)第001次挑战赛中获得胜利！")
         .setFont(font)
         .setFontSize(14f)
         .setFirstLineIndent(14f*2)
@@ -105,7 +105,7 @@ fun main() {
     val marginBottom= 36f
     val marginRight= 36f
 
-    val text =  Text("纸上谈兵项目组\n2024年12月04日")
+    val text =  Text("纸上谈兵委员会\n2025年01月08日")
         //.setFixedPosition()
         ////.setItalic()   // 倾斜
 
