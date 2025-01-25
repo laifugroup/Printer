@@ -1,9 +1,12 @@
 package all;
+
 import org.apache.pdfbox.io.IOUtils;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Description: 企业签章业务
@@ -15,8 +18,8 @@ public class EntSealGenerateService {
 
 
     public static void main(String[] args) {
-        EntSealGenerateService ent=new EntSealGenerateService();
-        byte[] bytes =   ent.generateEntSeal("纸上谈兵项目组","官方认证","610000122");
+        EntSealGenerateService ent = new EntSealGenerateService();
+        byte[] bytes = ent.generateEntSeal("纸上谈兵项目组", "官方认证", "610000122");
         try {
             // 使用ImageIO读取字节数组为BufferedImage对象（前提是字节数组数据符合相应图片格式规范）
             BufferedImage image = ImageIO.read(new java.io.ByteArrayInputStream(bytes));
@@ -31,17 +34,15 @@ public class EntSealGenerateService {
     }
 
     /**
+     * @return byte[]
      * @Description #生成企业签章
      * @Param [topText, middleText]
-     * @return byte[]
      **/
-    public byte[] generateEntSeal(String topText,String middleText,String securityCode){
+    public byte[] generateEntSeal(String topText, String middleText, String securityCode) {
 
-        byte[] bytes = export2pic("png",topText, middleText,securityCode);
+        byte[] bytes = export2pic("png", topText, middleText, securityCode);
         return bytes;
     }
-
-
 
 
     /**
@@ -95,7 +96,7 @@ public class EntSealGenerateService {
     private Color signFillColor = Color.RED;
 
 
-    public void draw(Graphics2D g2d,String topText,String middleText,String botttomText) {
+    public void draw(Graphics2D g2d, String topText, String middleText, String botttomText) {
         // 把绘制起点挪到圆中心点
         g2d.translate(width / 2, height / 2);
 
@@ -138,15 +139,15 @@ public class EntSealGenerateService {
         float angle;
         float start;
 
-        if(count>1 && count <=10){
+        if (count > 1 && count <= 10) {
             angle = 20f;// 字间角度
-            start = 90+(360 - angle*(count-1))/2;// 以x轴正向为0,顺时针旋转
-        }else if(count > 10){
-            angle = (360 - firmAngle) / (count-1);// 字间角度
-            start = 90+(360 - angle*(count-1))/2;// 以x轴正向为0,顺时针旋转
-        }else{
+            start = 90 + (360 - angle * (count - 1)) / 2;// 以x轴正向为0,顺时针旋转
+        } else if (count > 10) {
+            angle = (360 - firmAngle) / (count - 1);// 字间角度
+            start = 90 + (360 - angle * (count - 1)) / 2;// 以x轴正向为0,顺时针旋转
+        } else {
             angle = 0f;// 字间角度
-            start = 90+(360 - angle*(2-1))/2;// 以x轴正向为0,顺时针旋转
+            start = 90 + (360 - angle * (2 - 1)) / 2;// 以x轴正向为0,顺时针旋转
         }
         double vr = Math.toRadians(90);// 垂直旋转弧度
         char[] chars = topText.toCharArray();
@@ -167,45 +168,14 @@ public class EntSealGenerateService {
             g2d.translate(-x, 0);
             g2d.rotate(-radians);
         }
+        // 绘制印章底部文本（botttomText）开始
 
-
-// 绘制印章底部文本（botttomText）开始
-        g2d.setFont(getFirmFont(botttomText).deriveFont(Font.PLAIN, 12f)); // 调整字体大小为12
-        g2d.setColor(firmColor);
-        fm = g2d.getFontMetrics();
-        h = fm.getHeight(); // 字高度
-
-        int bottomCount = botttomText.length(); // 字数
-        int bottomR = (int) (width / 2 - h * 1.2f); // 半径减去字体高度的一半
-        float bottomAngle = 10f; // 字间角度
-        float bottomStart = 180 - (bottomAngle * (bottomCount - 1)) / 2; // 从180度开始，集中在底部
-
-        double bottomVr = Math.toRadians(90); // 垂直旋转弧度
-        char[] bottomChars = botttomText.toCharArray();
-        for (int i = 0; i < bottomCount; i++) {
-            char c = bottomChars[i]; // 需要绘制的字符
-            int bottomCw = fm.charWidth(c); // 此字符宽度
-            float a = bottomStart + bottomAngle * i; // 现在角度
-            double bottomRadians = Math.toRadians(a);
-            g2d.rotate(bottomRadians); // 旋转坐标系,让要绘制的字符处于x正轴
-            float bottomX = bottomR; // 绘制字符的x坐标为调整后的半径
-            g2d.translate(bottomX, h); // 移动到此位置,确保字在底部
-            g2d.rotate(bottomVr); // 旋转90度,让字平行于x轴
-            g2d.drawString(String.valueOf(c), -bottomCw / 2, 0); // 此点为字的中心点
-            // 将所有设置还原,等待绘制下一个
-            g2d.rotate(-bottomVr);
-            g2d.translate(-bottomX, -h); // 注意这里的y坐标调整
-            g2d.rotate(-bottomRadians);
-        }
-// 绘制印章底部文本（botttomText）结束
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     }
 
     /**
      * 获取具有指定半径外接圆的五角星顶点
      *
-     * @param radius
-     *            圆半径
+     * @param radius 圆半径
      */
     private Polygon getPentaclePoints(float radius) {
         if (radius <= 0)
@@ -241,40 +211,39 @@ public class EntSealGenerateService {
 
     private Font nameFont = new Font("宋体", Font.PLAIN, 19);
 
-    private Font getFirmFont(String topText){
+    private Font getFirmFont(String topText) {
         Font font = null;
         int len = topText.length();
         System.out.println(len);
-        if(len==1){
+        if (len == 1) {
             setFirmAngle(355);
             font = new Font("宋体", Font.PLAIN, 25);
-        }else if(len>1 && len<=3){
+        } else if (len > 1 && len <= 3) {
             setFirmAngle(310);
             font = new Font("宋体", Font.PLAIN, 25);
-        }else if(len>3 && len<=6){
+        } else if (len > 3 && len <= 6) {
             setFirmAngle(250);
             font = new Font("宋体", Font.PLAIN, 25);
-        }else if(len>6 && len <=10){
+        } else if (len > 6 && len <= 10) {
             setFirmAngle(200);
             font = new Font("宋体", Font.PLAIN, 25);
-        }else if(len>10 && len<=13){
+        } else if (len > 10 && len <= 13) {
             setFirmAngle(180);
             font = new Font("宋体", Font.PLAIN, 25);
-        }
-        else if(len>13 && len<=20){
+        } else if (len > 13 && len <= 20) {
             font = new Font("宋体", Font.PLAIN, 25);
             setFirmAngle(120);
-        }else if(len>20 && len <= 25){
+        } else if (len > 20 && len <= 25) {
             font = new Font("宋体", Font.PLAIN, 23);
 
             setFirmAngle(80);
-        }else if(len>25 && len < 30){
+        } else if (len > 25 && len < 30) {
             setFirmAngle(80);
             font = new Font("宋体", Font.PLAIN, 19);
-        }else if(len>=30 && len <= 40){
+        } else if (len >= 30 && len <= 40) {
             setFirmAngle(80);
             font = new Font("宋体", Font.PLAIN, 19);
-        }else{
+        } else {
             setFirmAngle(10);
             font = new Font("宋体", Font.PLAIN, 17);
         }
@@ -282,9 +251,9 @@ public class EntSealGenerateService {
     }
 
 
-
     private int firmAngle;
-    public void setFirmAngle(int firmAngle){
+
+    public void setFirmAngle(int firmAngle) {
         this.firmAngle = firmAngle;
     }
 
@@ -292,14 +261,12 @@ public class EntSealGenerateService {
     /**
      * 导出此印章为透明背景的图片字节数组.
      *
-     * @param format
-     *            图片类型,如果为null,则默认为png
+     * @param format 图片类型,如果为null,则默认为png
      * @return 数组
      * @throws FileNotFoundException
-     * @throws IOException
-     *             写出图像数据出现问题
+     * @throws IOException           写出图像数据出现问题
      */
-    public byte[] export2pic(String format,String topText,String middleText,String bottomText)  {
+    public byte[] export2pic(String format, String topText, String middleText, String bottomText) {
         int fix = 5;// 宽高修正,如果宽高就为图片宽高,可能边框线被切割
         BufferedImage bi = new BufferedImage(getWidth() + fix * 2, getHeight()
                 + fix * 2, 3);
@@ -309,17 +276,17 @@ public class EntSealGenerateService {
         //防锯齿状毛刺算法
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.translate(fix, fix);
-        draw(g2d,topText,middleText,bottomText);
+        draw(g2d, topText.getBytes(StandardCharsets.UTF_8), middleText, bottomText);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {
             ImageIO.write(bi, format == null ? "png" : format, baos);
             return baos.toByteArray();
         } catch (IOException e) {
-            throw new RuntimeException(topText+"：生成企业签章失败",e);
-        }finally {
+            throw new RuntimeException(topText + "：生成企业签章失败", e);
+        } finally {
             try {
-                if(baos!=null)
+                if (baos != null)
                     baos.close();
             } catch (IOException e) {
             }
